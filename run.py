@@ -72,7 +72,8 @@ def loginReceitaBX(cnpj):
     func.click(542, 528, clicks=2, interval=0.5)
 
     #Selecionando a opção: CNPJ.
-    func.click(535, 563, interval=0.5)
+    #func.click(535, 563, interval=0.5)
+    func.hotkey('down')
 
     #Clicando no campo para inserir o CNPJ.
     func.click(576, 531, interval=0.2)
@@ -136,75 +137,6 @@ def solicitarArquivo():
     func.hotkey('ctrl', 'c')
     func.hotkey('ctrl', 'c')
 
-#Salva os dados do arquivo.
-def salvandoArquivo(nome_arquivo):
-    files = os.listdir(path+path_data)
-    if nome_arquivo in files:
-        file = open(path+'\\'+nome_arquivo, 'w')
-        date = datetime.now()
-        file.write(str(date))
-        file.close()
-        print("Acessando Arquivo: "+ str(nome_arquivo))
-        subprocess.Popen(["notepad", path+path_data+nome_arquivo])
-
-        #Acessando a janela do arquivo.
-        func.click(860, 751, interval=2)
-        func.click(677, 394, interval=2)
-
-        #Colando os dados no arquivo.
-        func.hotkey('ctrl', 'end')
-        func.hotkey('enter')
-        func.hotkey('ctrl', 'v')
-
-        #Abrindo a opção para salvar.
-        func.hotkey('ctrl', 's')
-
-        #Acessando a janela do arquivo.
-        func.click(855, 751, interval=2)
-        func.click(677, 394, interval=2)
-
-        #Fecha o arquivo TXT.
-        func.hotkey('alt', 'f4')
-        func.hotkey('enter')
-
-    else:
-        print("Criando Arquivo: " + str(nome_arquivo))
-        openApp('Bloco de Notas')
-        criandoArquivo(nome_arquivo)
-
-#Criando arquivo TXT.
-def criandoArquivo(nome_arq):
-    #Acessando a janela do arquivo.
-    func.click(860, 751, interval=2)
-    func.click(677, 394, interval=2)
-
-    #Colando os dados no arquivo.
-    func.hotkey('ctrl', 'v')
-
-    #Abrindo a opção para salvar.
-    func.hotkey('ctrl', 's')
-
-    #Acessando o campo para edição do nome do arquivo.
-    func.click(812, 625, clicks=2, interval=0.2)
-
-    #Seleciona tudo que estiver no campo nome.
-    func.hotkey('ctrl', 'a')
-
-    #Atualiza o nome do arquivo.
-    func.typewrite(nome_arq)
-
-    #Salvando na pasta de Dados do programa.
-
-    #Clica no botão 'salvar'.
-    func.click(1206, 694, interval=1)
-    func.click(677, 394, interval=2)
-
-    #Acessando a janela do arquivo.
-    func.click(860, 751, interval=2)
-    func.click(677, 394, interval=2)
-
-    #Fecha o arquivo TXT.
-    func.hotkey('alt', 'f4')
 
 def fechandoJanela():
      func.hotkey('alt', 'f4')
@@ -231,8 +163,6 @@ def principal(nome_arq, cnpj, data_ini, data_fin):
     
     #Fecha o programa da ReceitaBX.
     func.hotkey('alt', 'f4')
-
-    salvandoArquivo(nome_arq)
 
 def main():        
     for cnpj in archive:        
