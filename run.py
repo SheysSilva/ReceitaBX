@@ -152,8 +152,6 @@ def err():
     return False
 
 def principal(nome_arq, cnpj, data_ini, data_fin):
-    run('echo off | clip', check=True, shell=True, stdout=subprocess.PIPE)
-
     openApp('receitanet')
 
     loginReceitaBX(cnpj)
